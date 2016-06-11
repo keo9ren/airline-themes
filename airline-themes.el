@@ -77,6 +77,15 @@ Valid Values: Full, Shortened, Disabled"
                  (const :tag "Disabled" nil)))
 
 ;;;###autoload
+(defcustom airline-show-minor-modes nil
+  "Show minor modes in Airline.
+
+Valid Values: Enabled, Disabled"
+  :group 'airline-themes
+  :type '(choice (const :tag "Enabled" t)
+                 (const :tag "Disabled" nil)))
+
+;;;###autoload
 (defcustom airline-utf-glyph-separator-left #x2b80
   "The unicode character number used for the left side separator."
   :group 'airline-themes
@@ -290,7 +299,8 @@ Valid Values: Full, Shortened, Disabled"
                                      ;; (powerline-raw (char-to-string #x2b83) center-face 'l)
 
                                      ;; Minor Modes
-                                     (powerline-minor-modes center-face 'l)
+                                     (when (equal airline-show-minor-modes t)
+                                       (powerline-minor-modes center-face 'l))
                                      ;; (powerline-narrow center-face 'l)
 
                                      ;; Subseparator <
